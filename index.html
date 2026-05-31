@@ -162,6 +162,7 @@
     display:flex;gap:10px;align-items:flex-start;
   }
   ul.docs li::before{content:"📄";flex:none;}
+  .docnote{font-size:12px;color:var(--ink-soft);margin-top:10px;line-height:1.7;}
   .caution{
     background:rgba(176,138,62,.09);border:1px solid var(--gold-soft);
     border-radius:13px;padding:15px 18px;font-size:14px;color:var(--green-800);
@@ -304,8 +305,9 @@
           </div>
 
           <div class="rsec">
-            <h3>そろえておきたい書類</h3>
+            <h3>相談時に確認されやすい資料の例</h3>
             <ul class="docs" id="rdocs"></ul>
+            <p class="docnote">※必要書類は離職理由や管轄ハローワークの案内により異なります。</p>
           </div>
 
           <div class="rsec">
@@ -333,6 +335,7 @@
     <details class="src">
       <summary>出典・参照先（公的資料を中心に、一部民間解説を補足参照）</summary>
       <div class="srclist">
+        <div>ハローワークインターネットサービス「基本手当について」　<a href="https://www.hellowork.mhlw.go.jp/insurance/insurance_basicbenefit.html" target="_blank" rel="noopener">リンク</a>（基本手当の受給要件・失業の状態・求職申込み・認定）</div>
         <div>厚生労働省「離職されたみなさまへ」　<a href="https://www.mhlw.go.jp/content/11600000/000951119.pdf" target="_blank" rel="noopener">PDF</a>（離職票・基本手当・受給手続きの基本）</div>
         <div>厚生労働省「Q＆A〜労働者の皆様へ（基本手当、再就職手当）」　<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000139508.html" target="_blank" rel="noopener">リンク</a>（失業の状態・求職申込み・認定実務）</div>
         <div>厚生労働省「受給期間延長の申請期限を変更します」　<a href="https://www.mhlw.go.jp/file/06-Seisakujouhou-11600000-Shokugyouanteikyoku/0000163256.pdf" target="_blank" rel="noopener">PDF</a>（延長の申請期限ルール）</div>
@@ -343,7 +346,7 @@
         <div>同「親の介護で退職したときは特定理由離職者になりますか？」　<a href="https://shigototokaigonoryouritsu.jp/soudan014/" target="_blank" rel="noopener">リンク</a></div>
       </div>
     </details>
-    <p class="disc">本ページは一般的な情報提供を目的とした教育用コンテンツです。特定理由離職者への該当可否・給付内容は個別事情によりハローワークが判断します。最終的な手続きは管轄ハローワークにご確認ください。本コンテンツは雇用保険制度の一般的な情報整理であり、受給資格・離職理由区分・提出書類・給付開始時期・給付日数を保証するものではありません。管轄ハローワークの案内・判断が優先されます。</p>
+    <p class="disc">本ページは一般的な情報提供を目的とした教育用コンテンツです。特定理由離職者への該当可否・給付内容は個別事情によりハローワークが判断します。最終的な手続きは管轄ハローワークにご確認ください。本コンテンツは雇用保険制度の一般的な情報整理であり、受給資格・離職理由区分・提出書類・給付開始時期・給付日数を保証するものではありません。個別の給付日数・給付額・給付制限の有無は、年齢、被保険者期間、離職理由等により異なります。管轄ハローワークの案内・判断が優先されます。</p>
     <p class="brand">LSFP ／ ライフスケッチ®</p>
   </footer>
 
@@ -435,7 +438,7 @@
     extend:{
       badge:"一般的な進め方の目安：受給期間延長を軸に",
       head:"半年は介護優先なら、まず受給期間延長で権利を守る。",
-      lede:"30日以上働けない見込みなら、受給期間延長が実態に合います。給付を後ろにずらして受給権を温存し、介護が落ち着いてから本格的に求職申込みをする——半年後にフルタイム就職を目指す設計と相性が良い進め方です。",
+      lede:"30日以上働けない見込みなら、受給期間延長が実態に合います。給付を後ろにずらして受給権を温存し、介護が落ち着いてから本格的に求職申込みをする——半年後にフルタイム就職を目指す設計と一般に整合しやすい進め方です。",
       flow:[
         "退職理由が介護だと会社へ伝え、離職票を受け取る",
         "離職日の翌日から30日経過後に、受給期間延長を申請（実務上は早めが安全）",
