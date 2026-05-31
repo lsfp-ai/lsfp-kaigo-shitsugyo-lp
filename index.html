@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>介護離職と失業給付｜あなたの進め方が見える診断</title>
+<style>
+  :root{
+    --green-900:#1f3a2e;
+    --green-800:#274d3b;
+    --green-700:#316048;
+    --green-600:#3d7456;
+    --green-500:#5a9173;
+    --sage:#9bb8a4;
+    --sage-soft:#dbe7de;
+    --cream:#f6f3ea;
+    --cream-2:#efe9da;
+    --ivory:#fcfaf3;
+    --gold:#b08a3e;
+    --gold-soft:#d9c08a;
+    --ink:#26302a;
+    --ink-soft:#54635b;
+    --line:#d7ddd4;
+    --shadow:0 18px 50px -22px rgba(31,58,46,.35);
+    --shadow-sm:0 6px 20px -12px rgba(31,58,46,.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .serif{font-family:Georgia,"Yu Mincho","YuMincho","Hiragino Mincho ProN",serif;}
+
+  /* ---------- atmosphere ---------- */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(900px 500px at 12% -5%,rgba(90,145,115,.16),transparent 60%),
+      radial-gradient(700px 480px at 105% 8%,rgba(176,138,62,.10),transparent 55%);
+  }
+  .wrap{position:relative;z-index:1;}
+
+  /* ---------- hero ---------- */
+  header.hero{
+    max-width:980px;margin:0 auto;padding:72px 28px 28px;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:12.5px;letter-spacing:.22em;color:var(--green-700);
+    text-transform:uppercase;font-weight:700;margin-bottom:26px;
+  }
+  .eyebrow::before{content:"";width:30px;height:1px;background:var(--gold);}
+  h1.title{
+    font-size:clamp(30px,5.4vw,52px);line-height:1.32;
+    color:var(--green-900);font-weight:600;letter-spacing:.01em;
+    margin-bottom:24px;
+  }
+  h1.title em{font-style:normal;color:var(--gold);}
+  .lede{
+    font-size:clamp(15px,2vw,18px);color:var(--ink-soft);max-width:640px;
+  }
+  .scene{
+    margin-top:34px;padding:22px 24px;border-left:3px solid var(--sage);
+    background:linear-gradient(100deg,rgba(255,255,255,.7),rgba(255,255,255,.25));
+    border-radius:0 12px 12px 0;font-size:14.5px;color:var(--green-800);
+  }
+  .scene b{color:var(--green-900);}
+
+  /* ---------- diagnostic shell ---------- */
+  main{max-width:820px;margin:0 auto;padding:18px 22px 40px;}
+  .card{
+    background:var(--ivory);border:1px solid var(--line);
+    border-radius:22px;box-shadow:var(--shadow);overflow:hidden;
+  }
+  .progress{
+    display:flex;gap:8px;padding:22px 30px 0;
+  }
+  .pdot{
+    flex:1;height:5px;border-radius:99px;background:var(--sage-soft);
+    transition:background .4s ease;
+  }
+  .pdot.active{background:var(--green-600);}
+  .pdot.done{background:var(--gold-soft);}
+
+  .stage{padding:30px 34px 38px;}
+  @media(max-width:560px){.stage{padding:26px 20px 30px;}.progress{padding:18px 20px 0;}}
+
+  .step{display:none;animation:fade .5s ease both;}
+  .step.show{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+  .qmeta{font-size:12px;letter-spacing:.18em;color:var(--gold);font-weight:700;text-transform:uppercase;margin-bottom:10px;}
+  .qtext{font-size:clamp(19px,3vw,25px);color:var(--green-900);font-weight:600;line-height:1.5;margin-bottom:6px;}
+  .why{
+    font-size:13.5px;color:var(--ink-soft);background:var(--cream-2);
+    border-radius:12px;padding:13px 16px;margin:16px 0 22px;
+    border-left:3px solid var(--gold-soft);
+  }
+  .why b{color:var(--green-800);}
+
+  .opts{display:grid;gap:13px;}
+  .opt{
+    text-align:left;border:1.5px solid var(--line);background:#fff;
+    border-radius:15px;padding:18px 20px;cursor:pointer;
+    font-size:15.5px;color:var(--ink);font-family:inherit;
+    transition:all .22s ease;display:flex;align-items:flex-start;gap:14px;
+  }
+  .opt:hover{border-color:var(--green-500);transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .opt .mk{
+    flex:none;width:26px;height:26px;border-radius:8px;background:var(--sage-soft);
+    color:var(--green-800);font-weight:700;display:grid;place-items:center;
+    font-size:14px;margin-top:1px;transition:all .22s ease;
+  }
+  .opt:hover .mk{background:var(--green-600);color:#fff;}
+  .opt .ot{display:block;}
+  .opt .osub{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:3px;line-height:1.6;}
+
+  .backrow{margin-top:24px;}
+  .back{
+    background:none;border:none;color:var(--ink-soft);font-size:13px;cursor:pointer;
+    font-family:inherit;text-decoration:underline;text-underline-offset:3px;
+  }
+  .back:hover{color:var(--green-700);}
+
+  /* ---------- result ---------- */
+  .result{display:none;animation:fade .55s ease both;}
+  .result.show{display:block;}
+  .rbadge{
+    display:inline-block;font-size:12px;letter-spacing:.16em;font-weight:700;
+    color:var(--gold);text-transform:uppercase;margin-bottom:12px;
+  }
+  .rhead{
+    font-size:clamp(21px,3.4vw,29px);color:var(--green-900);font-weight:600;
+    line-height:1.45;margin-bottom:8px;
+  }
+  .rlede{font-size:15px;color:var(--ink-soft);margin-bottom:24px;}
+
+  .rsec{margin-top:24px;}
+  .rsec h3{
+    font-size:13px;letter-spacing:.1em;color:var(--green-700);font-weight:700;
+    display:flex;align-items:center;gap:10px;margin-bottom:12px;
+  }
+  .rsec h3::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--gold);flex:none;}
+  ol.flow{list-style:none;counter-reset:f;display:grid;gap:10px;}
+  ol.flow li{
+    counter-increment:f;position:relative;padding:13px 16px 13px 50px;
+    background:#fff;border:1px solid var(--line);border-radius:13px;font-size:14.5px;
+  }
+  ol.flow li::before{
+    content:counter(f);position:absolute;left:14px;top:12px;
+    width:24px;height:24px;border-radius:8px;background:var(--green-600);color:#fff;
+    display:grid;place-items:center;font-size:13px;font-weight:700;
+  }
+  ul.docs{list-style:none;display:grid;gap:8px;}
+  ul.docs li{
+    font-size:14px;padding:11px 15px;background:var(--cream-2);border-radius:11px;
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  ul.docs li::before{content:"📄";flex:none;}
+  .caution{
+    background:rgba(176,138,62,.09);border:1px solid var(--gold-soft);
+    border-radius:13px;padding:15px 18px;font-size:14px;color:var(--green-800);
+  }
+  .caution b{color:var(--gold);}
+
+  .commonbox{
+    margin-top:26px;border-radius:16px;padding:20px 22px;
+    background:linear-gradient(135deg,var(--green-800),var(--green-700));
+    color:#eef4ef;
+  }
+  .commonbox .ct{font-size:13px;letter-spacing:.14em;color:var(--gold-soft);font-weight:700;margin-bottom:9px;text-transform:uppercase;}
+  .commonbox p{font-size:14.5px;line-height:1.85;}
+  .commonbox p+p{margin-top:9px;}
+
+  .ractions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;}
+  .btn{
+    font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+    border-radius:12px;padding:13px 22px;border:1.5px solid var(--green-600);
+    transition:all .2s ease;
+  }
+  .btn.primary{background:var(--green-700);color:#fff;}
+  .btn.primary:hover{background:var(--green-800);transform:translateY(-2px);}
+  .btn.ghost{background:transparent;color:var(--green-700);}
+  .btn.ghost:hover{background:var(--sage-soft);}
+
+  /* ---------- sources ---------- */
+  footer{max-width:820px;margin:0 auto;padding:14px 22px 70px;}
+  details.src{
+    background:var(--ivory);border:1px solid var(--line);border-radius:16px;
+    padding:6px 22px;
+  }
+  details.src summary{
+    cursor:pointer;list-style:none;padding:14px 0;font-size:14px;font-weight:600;
+    color:var(--green-800);display:flex;justify-content:space-between;align-items:center;
+  }
+  details.src summary::-webkit-details-marker{display:none;}
+  details.src summary::after{content:"＋";color:var(--gold);font-size:18px;}
+  details.src[open] summary::after{content:"−";}
+  .srclist{font-size:12.5px;color:var(--ink-soft);line-height:1.9;padding:4px 0 18px;}
+  .srclist a{color:var(--green-700);text-decoration:none;border-bottom:1px dotted var(--sage);}
+  .srclist a:hover{color:var(--gold);}
+  .srclist div{padding:6px 0;border-top:1px dashed var(--line);}
+  .disc{font-size:11.5px;color:var(--ink-soft);margin-top:18px;line-height:1.8;text-align:center;}
+  .brand{text-align:center;font-size:12px;color:var(--green-600);letter-spacing:.16em;margin-top:14px;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">親の介護で退職する方へ</span>
+    <h1 class="title serif">「今すぐ失業給付をもらうか」より、<br><em>「今、本当に働ける状態か」</em>から考える。</h1>
+    <p class="lede">親の介護のために会社を辞める。そのとき雇用保険（基本手当）をどう使うかは、人によって正解が変わります。3つの質問に答えると、あなたの状況に合った進め方の地図が見えてきます。</p>
+    <div class="scene">想定しているのは、たとえば <b>60歳・受給権あり・東京から親の近く（岐阜など）へ転居・要介護2の親を半年ほど介護してからフルタイム就職を目指す</b>——そんなケースです。あなたの事情に置き換えながら進めてください。</div>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="progress">
+        <div class="pdot active" data-p="0"></div>
+        <div class="pdot" data-p="1"></div>
+        <div class="pdot" data-p="2"></div>
+      </div>
+      <div class="stage">
+
+        <!-- Q1 -->
+        <section class="step show" data-step="0">
+          <div class="qmeta">Question 1 ／ 判断軸：今すぐ働けるか</div>
+          <div class="qtext">退職したあと、すぐに就職活動を始められそうですか？</div>
+          <div class="why"><b>なぜ聞くの？</b>　基本手当は「積極的に就職する意思があり、いつでも就職できるのに仕事がない状態」の人への給付です。介護で当面動けないなら、急いで受け取るより“あとに回す”設計が実態に合います。</div>
+          <div class="opts">
+            <button class="opt" data-q="0" data-v="now">
+              <span class="mk">A</span>
+              <span class="ot">退職後すぐ、面接や認定日には動ける
+                <span class="osub">介護をしながらでも就職活動はできそう</span></span>
+            </button>
+            <button class="opt" data-q="0" data-v="later">
+              <span class="mk">B</span>
+              <span class="ot">半年ほどは介護優先。30日以上は働けない見込み
+                <span class="osub">まとまった期間、就職活動は現実的でない</span></span>
+            </button>
+            <button class="opt" data-q="0" data-v="unsure">
+              <span class="mk">C</span>
+              <span class="ot">正直まだ分からない／親の状態次第
+                <span class="osub">落ち着くまで読めない</span></span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Q2 -->
+        <section class="step" data-step="1">
+          <div class="qmeta">Question 2 ／ 判断軸：生活費をいつ必要とするか</div>
+          <div class="qtext">退職直後の生活費は、どうなりそうですか？</div>
+          <div class="why"><b>なぜ聞くの？</b>　給付を「早く受けたい」のか「あとで受けても大丈夫」なのかで、選ぶ手続きが変わります。お金の余裕と介護の実態がずれると、制度の前提と食い違うことがあります。</div>
+          <div class="opts">
+            <button class="opt" data-q="1" data-v="needfast">
+              <span class="mk">A</span>
+              <span class="ot">基本手当を早めに受け取りたい
+                <span class="osub">当面の生活費の柱として必要</span></span>
+            </button>
+            <button class="opt" data-q="1" data-v="canwait">
+              <span class="mk">B</span>
+              <span class="ot">当面は別の資金でしのげる
+                <span class="osub">貯蓄・退職金・家計などで対応可能</span></span>
+            </button>
+          </div>
+          <div class="backrow"><button class="back">← ひとつ前に戻る</button></div>
+        </section>
+
+        <!-- Q3 -->
+        <section class="step" data-step="2">
+          <div class="qmeta">Question 3 ／ 判断軸：退職理由を客観的に示せるか</div>
+          <div class="qtext">介護が理由だと示す書類は、揃えられそうですか？</div>
+          <div class="why"><b>なぜ聞くの？</b>　介護離職が「特定理由離職者」として扱われるかは自動ではなく個別判断です。要介護認定・転居の必要性・両立困難を“客観的に”示せるほど、説明が通りやすくなります。</div>
+          <div class="opts">
+            <button class="opt" data-q="2" data-v="ready">
+              <span class="mk">A</span>
+              <span class="ot">揃えられそう
+                <span class="osub">要介護認定通知・介護保険証・ケアプラン・退職証明・住民票など</span></span>
+            </button>
+            <button class="opt" data-q="2" data-v="notsure">
+              <span class="mk">B</span>
+              <span class="ot">不安・何が要るか分からない
+                <span class="osub">どこまで集まるか見えていない</span></span>
+            </button>
+          </div>
+          <div class="backrow"><button class="back">← ひとつ前に戻る</button></div>
+        </section>
+
+        <!-- RESULT -->
+        <section class="result" data-result>
+          <div class="rbadge" id="rbadge">あなたへのおすすめの進め方</div>
+          <div class="rhead serif" id="rhead"></div>
+          <div class="rlede" id="rlede"></div>
+
+          <div class="rsec">
+            <h3>手続きの流れ</h3>
+            <ol class="flow" id="rflow"></ol>
+          </div>
+
+          <div class="rsec">
+            <h3>そろえておきたい書類</h3>
+            <ul class="docs" id="rdocs"></ul>
+          </div>
+
+          <div class="rsec">
+            <h3>このルートの注意点</h3>
+            <div class="caution" id="rcaution"></div>
+          </div>
+
+          <div class="commonbox">
+            <div class="ct">どのルートでも共通の土台</div>
+            <p>親の介護による退職でも、<b style="color:#fff">必ず特定理由離職者になるとは限りません</b>。介護の必要性・転居の必要性・仕事との両立困難性を踏まえて、ハローワークが個別に判断します。</p>
+            <p>だからこそ、書類をそろえることと、退職に至った事実関係を<b style="color:#fff">時系列で説明できるように</b>しておくことが、どちらのルートでも効いてきます。</p>
+          </div>
+
+          <div class="ractions">
+            <button class="btn primary" id="restart">最初からやり直す</button>
+            <a class="btn ghost" href="#sources">出典・参照先を見る</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer id="sources">
+    <details class="src">
+      <summary>出典・参照先（公的資料を中心に）</summary>
+      <div class="srclist">
+        <div>厚生労働省「離職されたみなさまへ」　<a href="https://www.mhlw.go.jp/content/11600000/000951119.pdf" target="_blank" rel="noopener">PDF</a>（離職票・基本手当・受給手続きの基本）</div>
+        <div>厚生労働省「Q＆A〜労働者の皆様へ（基本手当、再就職手当）」　<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000139508.html" target="_blank" rel="noopener">リンク</a>（失業の状態・求職申込み・認定実務）</div>
+        <div>厚生労働省「受給期間延長の申請期限を変更します」　<a href="https://www.mhlw.go.jp/file/06-Seisakujouhou-11600000-Shokugyouanteikyoku/0000163256.pdf" target="_blank" rel="noopener">PDF</a>（延長の申請期限ルール）</div>
+        <div>愛知労働局「離職されたみなさまへ」　<a href="https://jsite.mhlw.go.jp/aichi-roudoukyoku/var/rev0/0120/0083/20183592833.pdf" target="_blank" rel="noopener">PDF</a>（地域版パンフレット）</div>
+        <div>福島労働局「受給期間延長等申請書の記入方法及び注意事項」　<a href="https://www.pref.fukushima.lg.jp/uploaded/attachment/699559.pdf" target="_blank" rel="noopener">PDF</a>（申請様式の実務）</div>
+        <div>在宅介護を支えるメディア「介護離職による失業保険の受給条件と手続き」　<a href="https://zaitakukaigo.tokyo/kaigorisyoku-shitsugyohoken/" target="_blank" rel="noopener">リンク</a></div>
+        <div>親の介護と仕事・両立の総合サイト「親の介護のために退職した場合、失業保険はすぐにもらえる？」　<a href="https://shigototokaigonoryouritsu.jp/soudan005/" target="_blank" rel="noopener">リンク</a></div>
+        <div>同「親の介護で退職したときは特定理由離職者になりますか？」　<a href="https://shigototokaigonoryouritsu.jp/soudan014/" target="_blank" rel="noopener">リンク</a></div>
+      </div>
+    </details>
+    <p class="disc">本ページは一般的な情報提供を目的とした教育用コンテンツです。特定理由離職者への該当可否・給付内容は個別事情によりハローワークが判断します。最終的な手続きは管轄ハローワークにご確認ください。</p>
+    <p class="brand">LSFP ／ ライフスケッチ®</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var answers={};
+  var steps=document.querySelectorAll('.step');
+  var dots=document.querySelectorAll('.pdot');
+  var resultEl=document.querySelector('[data-result]');
+  var current=0;
+
+  function showStep(i){
+    steps.forEach(function(s){s.classList.remove('show');});
+    resultEl.classList.remove('show');
+    if(i<steps.length){
+      steps[i].classList.add('show');
+    }
+    dots.forEach(function(d,di){
+      d.classList.remove('active','done');
+      if(di<i)d.classList.add('done');
+      else if(di===i)d.classList.add('active');
+    });
+    current=i;
+    window.scrollTo({top:document.querySelector('main').offsetTop-20,behavior:'smooth'});
+  }
+
+  document.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var q=btn.getAttribute('data-q');
+      answers[q]=btn.getAttribute('data-v');
+      var next=parseInt(q,10)+1;
+      if(next<steps.length){showStep(next);}
+      else{renderResult();}
+    });
+  });
+
+  document.querySelectorAll('.back').forEach(function(b){
+    b.addEventListener('click',function(){ if(current>0) showStep(current-1); });
+  });
+
+  function decide(){
+    var q1=answers['0'],q2=answers['1'],q3=answers['2'];
+    // 主軸：今すぐ働けるか
+    var route;
+    if(q1==='now' && q2==='needfast') route='early';
+    else if(q1==='later') route='extend';
+    else if(q1==='unsure') route='hold';
+    else if(q1==='now' && q2==='canwait') route='earlyloose';
+    else route='hold';
+    return {route:route,q3:q3};
+  }
+
+  var DOCS=[
+    "離職票1・2（会社から受領）",
+    "本人確認書類・写真・口座情報（受給手続きの基本）",
+    "退職届・退職証明書（理由が介護であることの補強）",
+    "要介護認定通知・介護保険証（親が要介護状態である証明）",
+    "ケアプラン（継続的な介護の必要性）",
+    "住民票など（転居・生活拠点の変更）"
+  ];
+
+  var R={
+    early:{
+      badge:"あなたへのおすすめ：早期受給を軸に",
+      head:"すぐ動けて生活費も急ぐなら、早めの求職申込みを軸に。",
+      lede:"退職後すぐ就職活動でき、生活費も早く必要——この条件なら、離職票を持って早めにハローワークで求職申込みをする流れが向いています。ただし「介護でまだ働けない」実態とは矛盾しないかを必ず確認します。",
+      flow:[
+        "退職前に、退職理由が「親の介護」だと会社へ明確に伝える",
+        "離職票1・2を受け取り、離職理由欄が実態とずれていないか確認",
+        "管轄ハローワークで早めに求職申込み（介護関係書類も持参）",
+        "認定日ごとに求職活動の実績をつくる"
+      ],
+      caution:"<b>注意：</b>基本手当は「いつでも就職できる状態」が前提です。実際には介護でまだ動けないのに受給を始めると、制度の前提とずれる恐れがあります。早期受給を選ぶなら、両立できる実態かを先に確認してください。"
+    },
+    earlyloose:{
+      badge:"あなたへのおすすめ：早期受給と延長を比較",
+      head:"すぐ動けるが急がないなら、早期受給と延長の両にらみで。",
+      lede:"就職活動はできるが生活費は急がない——この場合は早期受給も延長もどちらも取り得ます。介護の見通しが立っているなら早期受給、変動しそうなら延長で権利を温存、と実態に合わせて選べます。",
+      flow:[
+        "離職票を受け取り、離職理由欄を確認する",
+        "介護の見通し（今後30日以上働けるか）を整理する",
+        "見通しが立つ→早めに求職申込み／不透明→受給期間延長を申請",
+        "状況が変わったら、延長後に求職申込みを前倒しする"
+      ],
+      caution:"<b>注意：</b>どちらにも倒せる分、決め手は「介護で実際に動けるか」です。迷ったら、権利を守れる延長を仮の基本線に置くと安全側に倒せます。"
+    },
+    extend:{
+      badge:"あなたへのおすすめ：受給期間延長を軸に",
+      head:"半年は介護優先なら、まず受給期間延長で権利を守る。",
+      lede:"30日以上働けない見込みなら、受給期間延長が実態に合います。給付を後ろにずらして受給権を温存し、介護が落ち着いてから本格的に求職申込みをする——半年後にフルタイム就職を目指す設計と相性が良い進め方です。",
+      flow:[
+        "退職理由が介護だと会社へ伝え、離職票を受け取る",
+        "離職日の翌日から30日経過後に、受給期間延長を申請（実務上は早めが安全）",
+        "延長中は基本手当は支給されない点を前提に資金計画を立てる",
+        "介護が落ち着いたら、岐阜市など管轄ハローワークで求職申込み"
+      ],
+      caution:"<b>注意：</b>延長中は基本手当は出ません。申請期限は「延長後の受給期間の最後の日まで」に見直されていますが、実務上は早めの申請が安全です。"
+    },
+    hold:{
+      badge:"あなたへのおすすめ：まず実態を見極める",
+      head:"見通しが読めないなら、延長を仮置きしつつ実態を確認。",
+      lede:"親の状態次第で読めない段階では、いきなり受給を始めるより、受給期間延長を仮の基本線にして権利を守るのが安全です。動ける見通しが立った時点で、早期受給へ切り替える余地を残しておきます。",
+      flow:[
+        "離職票を受け取り、離職理由欄を確認する",
+        "「今後30日以上働けるか」をいったん見極める",
+        "読めない間は受給期間延長で受給権を温存する",
+        "動ける見通しが立ったら、求職申込みへ前倒しする"
+      ],
+      caution:"<b>注意：</b>「すぐ働ける状態」かどうかが判定の核心です。曖昧なまま早期受給に進むと前提とずれます。まず実態確認を優先してください。"
+    }
+  };
+
+  function renderResult(){
+    var d=decide();
+    var r=R[d.route];
+    document.getElementById('rbadge').textContent=r.badge;
+    document.getElementById('rhead').textContent=r.head;
+    document.getElementById('rlede').textContent=r.lede;
+
+    var flow=document.getElementById('rflow');flow.innerHTML='';
+    r.flow.forEach(function(t){var li=document.createElement('li');li.textContent=t;flow.appendChild(li);});
+
+    var docs=document.getElementById('rdocs');docs.innerHTML='';
+    DOCS.forEach(function(t){var li=document.createElement('li');li.textContent=t;docs.appendChild(li);});
+
+    var cautionHtml=r.caution;
+    if(d.q3==='notsure'){
+      cautionHtml+="<br><br><b>書類について：</b>何が必要か不安なら、まず要介護認定通知・介護保険証・ケアプラン・退職証明・住民票の5点を起点に集め始めると、特定理由離職者の説明がしやすくなります。";
+    }
+    document.getElementById('rcaution').innerHTML=cautionHtml;
+
+    steps.forEach(function(s){s.classList.remove('show');});
+    dots.forEach(function(dot){dot.classList.remove('active');dot.classList.add('done');});
+    resultEl.classList.add('show');
+    window.scrollTo({top:document.querySelector('main').offsetTop-20,behavior:'smooth'});
+  }
+
+  document.getElementById('restart').addEventListener('click',function(){
+    answers={};showStep(0);
+  });
+})();
+</script>
+</body>
+</html>
